@@ -1,5 +1,4 @@
 # e4b509d7-1a81-4f6f-93d3-2d8d957a00cf
-
 '''
 Given an array A, write a program to find the max(A[j]-A[i]) where i < j. 
 If max(A[j]-A[i])<0, output 0. The input will start with an integer n, which indicates 

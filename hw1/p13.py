@@ -1,4 +1,9 @@
 #bd25ddf0-d6e7-4e18-9fb4-ff7db363ecb2
+'''
+Given an array representing values to be added to an empty binary search tree in order, 
+and a pair of these values, return the shortest path distance between these values in the 
+tree after all values have been inserted.
+'''
 
 class node:
     def __init__(self, val):
