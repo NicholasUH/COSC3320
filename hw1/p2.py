@@ -16,6 +16,11 @@ def find_maximum_difference(arr,arr_length):
     return current_maximum
             
 
-n = int(input())
-array = list(map(int,input().split()))
-print(find_maximum_difference(array,n))
+def main():
+    n = int(input())
+    array = list(map(int,input().split()))
+    print(find_maximum_difference(array,n))
+
+
+
+main()

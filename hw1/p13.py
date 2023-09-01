@@ -20,18 +20,15 @@ def insert(root, val):
         root.right = insert(root.right, val)
     return root
 
-
 def find_path(root, target):
     if not root:
-        return []
+        return 0
     if target < root.val:
-        return [root.val] + find_path(root.left, target)
+        return 1 + find_path(root.left, target)
     elif target > root.val:
-        return [root.val] + find_path(root.right, target)
+        return 1 + find_path(root.right, target)
     else:
-        return [root.val]
-
-
+        return 0
 
 def find_lca(root, node1, node2):
     if not root:
@@ -47,15 +44,21 @@ def shortest_path_distance(root, node1, node2):
     lca = find_lca(root, node1, node2)
     path1 = find_path(lca, node1)
     path2 = find_path(lca, node2)
-    distance = len(path1) + len(path2) - 2
-    return distance
+    return path1 + path2
 
-values = list(map(int, input().split()))
-root = None
-for val in values:
-    root = insert(root, val)
 
-nodes = input().split()
-node1, node2 = int(nodes[0]), int(nodes[1])
+def main():
+    values = list(map(int, input().split()))
+    root = None
 
-print(shortest_path_distance(root, node1, node2))
+    for val in values:
+        root = insert(root, val)
+
+    nodes = input().split()
+    node1, node2 = int(nodes[0]), int(nodes[1])
+
+    print(shortest_path_distance(root, node1, node2))
+
+
+
+main()
