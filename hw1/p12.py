@@ -1,26 +1,28 @@
-import heapq
-# passes 7/10 test cases
-def divideConsecutive(nums, k):
-
-    if len(nums) == 0:
-        return "true"
-    
-    if len(nums) % k != 0:
-        return "false"
-    
-    minNum = min(nums)
-    
+def canDivideIntoSets(nums, k):
+    # Sort the array to make it easier to find consecutive numbers.
     nums.sort()
     
-    for i in range(k):
-        if minNum + i in nums:
-            nums.remove(minNum + i) 
-        else:
-            return "false"
+    def divideHelper(start):
+        if start == len(nums):
+            return True  # All elements have been grouped into sets
+        
+        # Try to find a set of k consecutive numbers starting from 'start'.
+        for i in range(k):
+            current = nums[start] + i
+            if current not in nums:
+                return False  # Consecutive number is missing
+            else:
+                nums.remove(current)  # Remove the used number from the array
+            
+        # Recursively continue with the next starting point.
+        return divideHelper(start)
     
-    return divideConsecutive(nums, k)
+    return divideHelper(0)
 
-
+# Read input
 nums = list(map(int, input().split()))
 k = int(input())
-print(divideConsecutive(nums,k))
+
+# Check if it's possible to divide into sets of k consecutive numbers
+result = canDivideIntoSets(nums, k)
+print(result)
