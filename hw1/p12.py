@@ -1,28 +1,48 @@
-def canDivideIntoSets(nums, k):
-    # Sort the array to make it easier to find consecutive numbers.
-    nums.sort()
+import heapq
+'''
+Given an array of positive integers nums and a positive integer k, check whether it is 
+possible to divide nums into sets of k consecutive numbers.
+
+Write a recursive function to solve this problem. Return true if it is possible. 
+Otherwise, return false. The input has 2 lines. The first line is the array of positive 
+integers nums. The second line is the positive integer k.
+'''
+
+def can_divide_into_k_subsets(minHeap, k):
+    if len(minHeap) == 0:
+        return True
     
-    def divideHelper(start):
-        if start == len(nums):
-            return True  # All elements have been grouped into sets
+    temp = []
+    def can_divide(counter, currNum):
+        if counter == 0:
+            return True
         
-        # Try to find a set of k consecutive numbers starting from 'start'.
-        for i in range(k):
-            current = nums[start] + i
-            if current not in nums:
-                return False  # Consecutive number is missing
-            else:
-                nums.remove(current)  # Remove the used number from the array
-            
-        # Recursively continue with the next starting point.
-        return divideHelper(start)
+        if len(minHeap) == 0:
+            return False
+        
+        if currNum == minHeap[0]+1:
+            temp.append(heapq.heappop(minHeap))
+            return can_divide(counter, currNum)
+        elif currNum == minHeap[0]:
+            heapq.heappop(minHeap)
+            return can_divide(counter-1, currNum+1)
+        else:
+            return False
+        
+    if can_divide(k, minHeap[0]):
+        for x in temp:
+            heapq.heappush(minHeap, x)
+        return can_divide_into_k_subsets(minHeap, k)
     
-    return divideHelper(0)
+    return False
 
-# Read input
-nums = list(map(int, input().split()))
-k = int(input())
+def main():
+    array = list(map(int,input().split()))
+    k = int(input())
+    heapq.heapify(array)
+    if can_divide_into_k_subsets(array,k):
+        print("true")
+    else:
+        print("false")
 
-# Check if it's possible to divide into sets of k consecutive numbers
-result = canDivideIntoSets(nums, k)
-print(result)
+main()
