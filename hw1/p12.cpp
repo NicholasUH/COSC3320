@@ -9,7 +9,6 @@ integers nums. The second line is the positive integer k.
 
 // e3fc3919-8de9-4d8d-a274-496b820bc2cf
 
-
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -22,12 +21,10 @@ bool divideConsecutive(vector<int>& nums, int k) {
         return true;
     }
 
-
     if (nums.size() % k != 0) {
         return false;
     }
 
-    // Get the smallest number in the array
     int minNum = *min_element(nums.begin(), nums.end());
 
     for (int i = 0; i < k; ++i) {
