@@ -11,7 +11,6 @@ def divideConsecutive(nums, k):
     if len(nums) % k != 0:
         return "false"
     
-    
     minNum = min(nums)
     
     if minNum + k - 1 not in nums:
