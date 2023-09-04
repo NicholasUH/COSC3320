@@ -1,5 +1,5 @@
 # 5b65288e-7c67-4365-bcf3-21809c5dafd1
-
+# grabbing the wrong k value
 def divideConsecutive(nums, k):
     if(k == 0 or k == 1):
         return "true"
@@ -9,7 +9,6 @@ def divideConsecutive(nums, k):
     
     if len(nums) % k != 0:
         return "false"
-    
     
     minNum = min(nums)
     
