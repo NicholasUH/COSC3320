@@ -68,7 +68,4 @@ def main():
 
     print(find_distance(root, node1, node2))
 
-
-
-
 main()

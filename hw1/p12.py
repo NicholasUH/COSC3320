@@ -1,10 +1,7 @@
-# 5b65288e-7c67-4365-bcf3-21809c5dafd1
-# grabbing the wrong k value
+# e7ee42d4-1251-4d61-a61e-c67ea784c217
+
 
 def divideConsecutive(nums, k):
-    if(k == 0 or k == 1):
-        return "true"
-    
     if len(nums) == 0:
         return "true"
     
@@ -13,14 +10,34 @@ def divideConsecutive(nums, k):
     
     minNum = min(nums)
     
-    if minNum + k - 1 not in nums:
-        return "false"
+    nums.sort()
     
-    for i in range(k):
-        if minNum + i in nums:
-            nums.remove(minNum + i) 
-        else:
-            return "false"
+    if k % 2 == 0:
+        for i in range(k // 2):
+            if minNum + i in nums:
+                nums.remove(minNum + i)
+            else:
+                return "false"
+             
+            if minNum + k - 1 - i in nums:
+                nums.remove(minNum + k - 1 - i)
+            else:
+                return "false"
+    else:
+        for i in range(k // 2):
+            if minNum + i + 1 == minNum + k - 2 - i and minNum+i+1 in nums:
+                nums.remove(minNum + i + 1)
+
+            if minNum + i in nums:
+                nums.remove(minNum + i)
+            else:
+                return "false"
+            
+            if minNum + k - 1 - i in nums :
+                nums.remove(minNum + k - 1 - i)
+            else:
+                return "false"
+
     
     return divideConsecutive(nums, k)
 
@@ -31,3 +48,15 @@ def main():
     print(divideConsecutive(array,k))
     
 main()
+
+
+'''
+1 2 3 4 5 6 7 8 9
+3
+
+for 0 in range(2)
+
+
+
+'''
+
