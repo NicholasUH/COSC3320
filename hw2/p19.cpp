@@ -20,11 +20,9 @@ int helper(vector<int> arr1, vector<int> arr2){
 
 void merge(vector<int>& arr1, vector<int> &arr2 ,int left, int mid, int right, int& points1, int& points2) {
     
-    // FIND MIDPOINTS
     int n1 = mid - left + 1;
     int n2 = right - mid;
     
-    // MAKE SUBARRAYS
     vector<int> leftArr1(n1);
     vector<int> rightArr1(n2);
     vector<int> leftArr2(n1);
@@ -40,10 +38,8 @@ void merge(vector<int>& arr1, vector<int> &arr2 ,int left, int mid, int right, i
         rightArr2[j] = arr2[mid + 1 + j];
     }
     
-    
     int i1 = 0, i2 = 0, j1 = 0, j2 = 0;
     int k1 = left, k2 = left;
-    
     
     if(i1 < leftArr1.size() && j1 < rightArr1.size()){
         points1 += helper(leftArr2,rightArr1);
@@ -55,9 +51,6 @@ void merge(vector<int>& arr1, vector<int> &arr2 ,int left, int mid, int right, i
         i2++;
     }
     
-    
-    // MERGE SUBARRAYS BACK
-
     i1 = 0, i2 = 0, j1 = 0, j2 = 0;
     k1 = left, k2 = left;
 
@@ -108,8 +101,6 @@ void merge(vector<int>& arr1, vector<int> &arr2 ,int left, int mid, int right, i
         ++j2;
         ++k2;
     }
-    
-    
 }
 
 void mergeSort(vector<int> &arr1, vector<int> &arr2 , int left, int right, int& points1, int& points2) {
@@ -123,7 +114,6 @@ void mergeSort(vector<int> &arr1, vector<int> &arr2 , int left, int right, int& 
     }
 }
 
-
 int main(){
 
     vector<int> arr1;
@@ -131,7 +121,6 @@ int main(){
     string tempS;
     int tempI, points1 = 0, points2 = 0;
 
-    // INPUT PARSING
     getline(cin, tempS);
     stringstream ss(tempS);
     while(ss >> tempI){
@@ -166,9 +155,6 @@ int main(){
 }
 // arr1 = robert
 // arr2 = rachel
-
-
-
 
 // 5 3 6 9
 // 7 5 8 4
