@@ -1,4 +1,4 @@
-// aab5ff8a-b6ef-41f0-b5ba-37bd4c86f65c
+// 81c47232-7307-42d1-bab6-24715b5c97dd
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -6,7 +6,7 @@
 
 using namespace std;
 
-int helper(vector<int> arr1, vector<int> arr2)
+int pointsCounter(vector<int> arr1, vector<int> arr2)
 {
     int index = 0, score = 0, finalScore = 0;
 
@@ -25,21 +25,21 @@ int helper(vector<int> arr1, vector<int> arr2)
 void merge(vector<int> &arr1, vector<int> &arr2, int left, int mid, int right, int &points1, int &points2)
 {
 
-    int n1 = mid - left + 1;
-    int n2 = right - mid;
+    int mid1 = mid - left + 1;
+    int mid2 = right - mid;
 
-    vector<int> leftArr1(n1);
-    vector<int> rightArr1(n2);
-    vector<int> leftArr2(n1);
-    vector<int> rightArr2(n2);
+    vector<int> leftArr1(mid1);
+    vector<int> rightArr1(mid2);
+    vector<int> leftArr2(mid1);
+    vector<int> rightArr2(mid2);
 
-    for (int i = 0; i < n1; ++i)
+    for (int i = 0; i < mid1; i++)
     {
         leftArr1[i] = arr1[left + i];
         leftArr2[i] = arr2[left + i];
     }
 
-    for (int j = 0; j < n2; ++j)
+    for (int j = 0; j < mid2; j++)
     {
         rightArr1[j] = arr1[mid + 1 + j];
         rightArr2[j] = arr2[mid + 1 + j];
@@ -50,75 +50,59 @@ void merge(vector<int> &arr1, vector<int> &arr2, int left, int mid, int right, i
 
     if (i1 < leftArr1.size() && j1 < rightArr1.size())
     {
-        points1 += helper(leftArr2, rightArr1);
-        i1++;
+        points1 += pointsCounter(leftArr2, rightArr1);
     }
 
     if (i2 < leftArr2.size() && j2 < rightArr2.size())
     {
-        points2 += helper(leftArr1, rightArr2);
-        i2++;
+        points2 += pointsCounter(leftArr1, rightArr2);
     }
 
-    i1 = 0, i2 = 0, j1 = 0, j2 = 0;
-    k1 = left, k2 = left;
-
-    while (i1 < n1 && j1 < n2)
+    while (i1 < mid1 && j1 < mid2)
     {
         if (leftArr1[i1] <= rightArr1[j1])
         {
-            arr1[k1] = leftArr1[i1];
-            ++i1;
+            arr1[k1] = leftArr1[i1++];
         }
         else
         {
-            arr1[k1] = rightArr1[j1];
-            ++j1;
+            arr1[k1] = rightArr1[j1++];
         }
-        ++k1;
+        k1++;
     }
 
-    while (i1 < n1)
+    while (i1 < mid1)
     {
-        arr1[k1] = leftArr1[i1];
-        ++i1;
-        ++k1;
+        arr1[k1++] = leftArr1[i1++];
     }
 
-    while (j1 < n2)
+    while (j1 < mid2)
     {
-        arr1[k1] = rightArr1[j1];
-        ++j1;
-        ++k1;
+        arr1[k1++] = rightArr1[j1++];
+
     }
 
-    while (i2 < n1 && j2 < n2)
+    while (i2 < mid1 && j2 < mid2)
     {
         if (leftArr2[i2] <= rightArr2[j2])
         {
-            arr2[k2] = leftArr2[i2];
-            ++i2;
+            arr2[k2] = leftArr2[i2++];
         }
         else
         {
-            arr2[k2] = rightArr2[j2];
-            ++j2;
+            arr2[k2] = rightArr2[j2++];
         }
-        ++k2;
+        k2++;
     }
 
-    while (i2 < n1)
+    while (i2 < mid1)
     {
-        arr2[k2] = leftArr2[i2];
-        ++i2;
-        ++k2;
+        arr2[k2++] = leftArr2[i2++];
     }
 
-    while (j2 < n2)
+    while (j2 < mid2)
     {
-        arr2[k2] = rightArr2[j2];
-        ++j2;
-        ++k2;
+        arr2[k2++] = rightArr2[j2++];
     }
 }
 
@@ -144,15 +128,18 @@ int main()
     int tempI, points1 = 0, points2 = 0;
 
     getline(cin, tempS);
-    stringstream ss(tempS);
+    stringstream ss;
+    ss << tempS;
     while (ss >> tempI)
     {
         arr1.push_back(tempI);
     }
 
+
+    ss.clear();
     getline(cin, tempS);
-    stringstream ss2(tempS);
-    while (ss2 >> tempI)
+    ss << tempS;
+    while (ss >> tempI)
     {
         arr2.push_back(tempI);
     }
