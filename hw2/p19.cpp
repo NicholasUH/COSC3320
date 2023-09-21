@@ -79,7 +79,6 @@ void merge(vector<int> &arr1, vector<int> &arr2, int left, int mid, int right, i
     while (j1 < mid2)
     {
         arr1[k1++] = rightArr1[j1++];
-
     }
 
     while (i2 < mid1 && j2 < mid2)
@@ -121,22 +120,21 @@ void mergeSort(vector<int> &arr1, vector<int> &arr2, int left, int right, int &p
 
 int main()
 {
-
-    vector<int> arr1;
-    vector<int> arr2;
+    vector<int> arr1, arr2;
     string tempS;
     int tempI, points1 = 0, points2 = 0;
+    stringstream ss;
+
 
     getline(cin, tempS);
-    stringstream ss;
     ss << tempS;
     while (ss >> tempI)
     {
         arr1.push_back(tempI);
     }
 
-
     ss.clear();
+    
     getline(cin, tempS);
     ss << tempS;
     while (ss >> tempI)
