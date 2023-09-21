@@ -25,13 +25,9 @@ int pointsCounter(vector<int> arr1, vector<int> arr2)
 void merge(vector<int> &arr1, vector<int> &arr2, int left, int mid, int right, int &points1, int &points2)
 {
 
-    int mid1 = mid - left + 1;
-    int mid2 = right - mid;
+    int mid1 = mid - left + 1, mid2 = right - mid, i1 = 0, i2 = 0, j1 = 0, j2 = 0, k1 = left, k2 = left;
 
-    vector<int> leftArr1(mid1);
-    vector<int> rightArr1(mid2);
-    vector<int> leftArr2(mid1);
-    vector<int> rightArr2(mid2);
+    vector<int> leftArr1(mid1), rightArr1(mid2), leftArr2(mid1), rightArr2(mid2);
 
     for (int i = 0; i < mid1; i++)
     {
@@ -45,18 +41,8 @@ void merge(vector<int> &arr1, vector<int> &arr2, int left, int mid, int right, i
         rightArr2[j] = arr2[mid + 1 + j];
     }
 
-    int i1 = 0, i2 = 0, j1 = 0, j2 = 0;
-    int k1 = left, k2 = left;
-
-    if (i1 < leftArr1.size() && j1 < rightArr1.size())
-    {
-        points1 += pointsCounter(leftArr2, rightArr1);
-    }
-
-    if (i2 < leftArr2.size() && j2 < rightArr2.size())
-    {
-        points2 += pointsCounter(leftArr1, rightArr2);
-    }
+    points1 += pointsCounter(leftArr2, rightArr1);
+    points2 += pointsCounter(leftArr1, rightArr2);
 
     while (i1 < mid1 && j1 < mid2)
     {
@@ -125,7 +111,6 @@ int main()
     int tempI, points1 = 0, points2 = 0;
     stringstream ss;
 
-
     getline(cin, tempS);
     ss << tempS;
     while (ss >> tempI)
@@ -134,7 +119,7 @@ int main()
     }
 
     ss.clear();
-    
+
     getline(cin, tempS);
     ss << tempS;
     while (ss >> tempI)
