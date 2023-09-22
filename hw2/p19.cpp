@@ -127,7 +127,8 @@ int main()
         arr2.push_back(tempI);
     }
 
-    mergeSort(arr1, arr2, 0, arr1.size() - 1, points1, points2);
 
+    
+    mergeSort(arr1, arr2, 0, arr1.size() - 1, points1, points2);
     cout << points1 << " " << points2;
 }
