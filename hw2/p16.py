@@ -1,6 +1,5 @@
-# b4da6e55-e0ab-4e40-b1b9-1e2a4d8fab69
-
-def lastRemainingNumber(n, leftStart=1):
+# 7160b9de-6557-42ee-88e0-185a3b234fd5
+def lastRemainingNumber(n, leftStart = 1):
     if n == 1:
         return 1
 

@@ -1,4 +1,4 @@
-// 81c47232-7307-42d1-bab6-24715b5c97dd
+// ab33cc1f-b6a9-4c10-b29c-4697cc25a12e
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -127,8 +127,6 @@ int main()
         arr2.push_back(tempI);
     }
 
-
-    
     mergeSort(arr1, arr2, 0, arr1.size() - 1, points1, points2);
     cout << points1 << " " << points2;
 }
