@@ -1,6 +1,5 @@
-# 1b356a92-d664-49c1-956c-49f2188b02b7
+# 6adda463-5d76-476d-a81c-905c5236488e
 def is_stepping_number(num):
-    # Helper function to check if a number is a stepping number
     num_str = str(num)
     for i in range(len(num_str) - 1):
         if abs(int(num_str[i]) - int(num_str[i+1])) != 1:
@@ -19,7 +18,6 @@ def generate_stepping_numbers(low, high):
 
         last_digit = curr_num % 10
 
-        # Explore adjacent digits
         if last_digit > 0:
             backtrack(curr_num * 10 + (last_digit - 1))
 
@@ -31,10 +29,12 @@ def generate_stepping_numbers(low, high):
 
     return sorted(stepping_numbers)
 
-# Read input
-low = int(input())
-high = int(input())
+def main():
+    low = int(input())
+    high = int(input())
 
-# Generate and print stepping numbers in the range
-result = generate_stepping_numbers(low, high)
-print(' '.join(str(num) for num in result))
+    result = generate_stepping_numbers(low, high)
+    print(' '.join(str(num) for num in result)) 
+
+main()
+
