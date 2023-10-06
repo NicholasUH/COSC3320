@@ -1,4 +1,4 @@
-# 021ab66c-0f42-46c3-a577-7e22faa3050f
+# 1724c025-8be3-4681-ac79-10810c974574
 
 def countWays(height, maxSteps, dp): 
     if height <= 1:
@@ -14,7 +14,11 @@ def countWays(height, maxSteps, dp):
 
     return dp[height]
 
-height = int(input())
-maxSteps = int(input())
-dp = [-1 for _ in range(height + 1)]
-print(countWays(height, maxSteps, dp))
+def main():
+    height = int(input())
+    maxSteps = int(input())
+    dp = [-1 for _ in range(height + 1)]
+    print(countWays(height, maxSteps, dp))  
+
+
+main()
