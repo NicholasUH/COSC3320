@@ -1,65 +1,65 @@
-// f38d3868-532c-4d70-a522-4aff38ecddef
+// b61a7745-dddf-4d90-a4af-94b9a7a88132
 #include <iostream>
 #include <vector>
 #include <string>
 using namespace std;
 
-int dpSolution(vector<int> &wordLengths, int width, int height, int size, int count)
+int dpSolution(vector<int> &wordLengths, int w, int h, int size, int count)
 {
-    vector<int> dpArray(width + 1, 0);
-    int index = 0;
+    vector<int> dpArray(w + 1, 0);
+    int i = 0;
     int spaceTaken = 0;
     int widthIndex = 0;
     int textCounter = 0;
 
     do
     {
-        if (height >= count)
+        if (h >= count)
         {
-            int linesFit = height / count; 
+            int linesFit = h / count; 
             textCounter += linesFit;
             dpArray[widthIndex] = textCounter;      
-            spaceTaken = height - (height % count); 
+            spaceTaken = h - (h % count); 
         }
         else
             spaceTaken = 0; 
 
-        while (wordLengths[index] <= height - spaceTaken)
+        while (wordLengths[i] <= h - spaceTaken)
         {
-            spaceTaken += wordLengths[index] + 1; 
-            index++;
-            if (index == size)
+            spaceTaken += wordLengths[i] + 1; 
+            i++;
+            if (i == size)
             {
 
                 textCounter++;
-                index = 0;
+                i = 0;
                 dpArray[widthIndex] = textCounter;
             }
         }
 
         widthIndex++;
-    } while (index != 0 && widthIndex < width);
+    } while (i != 0 && widthIndex < w);
 
     int temp = widthIndex;
 
-    while (widthIndex < width)
+    while (widthIndex < w)
     {
         dpArray[widthIndex] = textCounter + dpArray[widthIndex - temp];
 
         widthIndex++;
     }
 
-    return dpArray[width - 1];
+    return dpArray[w - 1];
 }
 
 int main()
 {
-    int width, height;
+    int w, h;
     string text;
     size_t pos = 0;
 
-    cin >> width;
-    cin >> height;
+    cin >> w;
+    cin >> h;
     cin.ignore(); 
     getline(cin, text);
     int count = text.size() + 1;
@@ -73,7 +73,7 @@ int main()
     }
     wordLengths.push_back(text.size()); 
 
-    cout << dpSolution(wordLengths, width, height, wordLengths.size(), count) << endl;
+    cout << dpSolution(wordLengths, w, h, wordLengths.size(), count) << endl;
 
     return 0;
 }
