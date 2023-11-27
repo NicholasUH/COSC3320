@@ -6,12 +6,10 @@ def job_profit_scheduling(start_time, end_time, profit):
     dp[0] = tasks[0][2]
 
     for i in range(1, n):
-        # Find the latest non-overlapping task
         j = i - 1
         while j >= 0 and tasks[j][1] > tasks[i][0]:
             j -= 1
 
-        # Choose the maximum profit between choosing and not choosing the current task
         dp[i] = max(dp[i - 1], tasks[i][2] + (dp[j] if j >= 0 else 0))
 
     return dp[-1]
