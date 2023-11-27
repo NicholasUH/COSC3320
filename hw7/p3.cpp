@@ -10,7 +10,7 @@ void solve(vector<int>& a, int j, vector<int>& bags) {
     }
     for(int i = 0; i < bags.size(); i++) {
         bags[i] += a[j];
-        if (bags[i] < ans) // pruning
+        if (bags[i] < ans) 
             solve(a, j + 1, bags);
         bags[i] -= a[j];
     }
@@ -25,7 +25,7 @@ int main() {
 
     vector<int> a(n);
     for(int i = 0; i < n; i++) cin >> a[i];
-    sort(a.rbegin(), a.rend());  // sort in descending order
+    sort(a.rbegin(), a.rend());
 
     vector<int> bags(k, 0);
     solve(a, 0, bags);
